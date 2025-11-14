@@ -1,29 +1,39 @@
-// TODO: Replace dummy data with real API call to Google Sheets
-
-function loadOrdersDummy() {
+async function loadOrders() {
   const tbody = document.getElementById("orders-body");
   if (!tbody) return;
 
-  // Example dummy order row
-  const example = {
-    order_id: "ORD-123456",
-    name: "Test User",
-    phone: "9876543210",
-    product: "Basic T-Shirt",
-    price: 199,
-    date: "2025-11-15"
-  };
+  tbody.innerHTML = "<tr><td colspan='6'>Loading orders...</td></tr>";
 
-  tbody.innerHTML = `
-    <tr>
-      <td>${example.order_id}</td>
-      <td>${example.name}</td>
-      <td>${example.phone}</td>
-      <td>${example.product}</td>
-      <td>₹${example.price}</td>
-      <td>${example.date}</td>
-    </tr>
-  `;
+  const apiURL = "https://script.google.com/macros/s/AKfycbw2JFvVFP6CaSEKnKNWbTrPg5q2e1JiZyqitiQniVNawHdKTADDb0Go8g78q078CuoUcQ/exec";  // same URL
+
+  try {
+    const res = await fetch(apiURL + "?resource=orders");
+    const orders = await res.json();
+
+    tbody.innerHTML = "";
+
+    if (!orders.length) {
+      tbody.innerHTML = "<tr><td colspan='6'>No orders found.</td></tr>";
+      return;
+    }
+
+    orders.forEach(order => {
+      tbody.innerHTML += `
+        <tr>
+          <td>${order.order_id}</td>
+          <td>${order.name}</td>
+          <td>${order.phone}</td>
+          <td>${order.product}</td>
+          <td>₹${order.price}</td>
+          <td>${new Date(order.date).toLocaleString()}</td>
+        </tr>
+      `;
+    });
+
+  } catch (err) {
+    console.error("Error loading orders:", err);
+    tbody.innerHTML = "<tr><td colspan='6'>Error loading orders.</td></tr>";
+  }
 }
 
-document.addEventListener("DOMContentLoaded", loadOrdersDummy);
+document.addEventListener("DOMContentLoaded", loadOrders);
