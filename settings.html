@@ -9,7 +9,6 @@
 <body>
 
 <div class="layout">
-  <!-- Sidebar -->
   <aside class="sidebar">
     <div class="sidebar-logo">
       <span class="logo-circle">MM</span>
@@ -22,7 +21,6 @@
     </nav>
   </aside>
 
-  <!-- Main content -->
   <main class="main">
     <header class="topbar">
       <h1>Website Settings</h1>
@@ -35,28 +33,26 @@
       <div class="card">
         <h2>Home Page Content</h2>
         <p class="muted">
-          In the next step, we will connect these fields to a Google Sheet so you can change
-          content without editing code.
+          These fields are connected to your Google Sheet. Editing them will update your website content live.
         </p>
 
         <form class="form" onsubmit="saveSettings(event)">
           <div class="form-group">
             <label for="welcomeTitle">Welcome Title</label>
-            <input type="text" id="welcomeTitle" placeholder="Welcome to MM Times Clothing">
+            <input type="text" id="welcomeTitle">
           </div>
 
           <div class="form-group">
             <label for="welcomeText">Welcome Text</label>
-            <textarea id="welcomeText" rows="3"
-                      placeholder="Your trusted place for custom printing on T-shirts, hoodies, caps & more."></textarea>
+            <textarea id="welcomeText" rows="3"></textarea>
           </div>
 
           <div class="form-group">
             <label for="homeButtonText">Home Button Text</label>
-            <input type="text" id="homeButtonText" placeholder="Explore Products">
+            <input type="text" id="homeButtonText">
           </div>
 
-          <button class="btn" type="submit">Save (local for now)</button>
+          <button class="btn" type="submit">Save</button>
           <p id="settings-status" class="muted"></p>
         </form>
       </div>
@@ -68,4 +64,3 @@
 <script src="scripts/settings.js"></script>
 </body>
 </html>
-
