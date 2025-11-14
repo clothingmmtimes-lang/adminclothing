@@ -1,5 +1,5 @@
 // Replace this with your new Apps Script Web App URL
-const apiURL = "PASTE_YOUR_SCRIPT_URL_HERE";
+const apiURL = "https://script.google.com/macros/s/AKfycbw2JFvVFP6CaSEKnKNWbTrPg5q2e1JiZyqitiQniVNawHdKTADDb0Go8g78q078CuoUcQ/exec";
 
 // ===== LOAD CONTENT FROM GOOGLE SHEET =====
 async function loadSettings() {
