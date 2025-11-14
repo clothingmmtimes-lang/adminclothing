@@ -1,10 +1,9 @@
-// Replace this with your new Apps Script Web App URL
-const apiURL = "https://script.google.com/macros/s/AKfycbw2JFvVFP6CaSEKnKNWbTrPg5q2e1JiZyqitiQniVNawHdKTADDb0Go8g78q078CuoUcQ/exec";
+const apiURL = "https://script.google.com/macros/s/AKfycbw2JFvVFP6CaSEKnKNWbTrPg5q2e1JiZyqitiQniVNawHdKTADDb0Go8g78q078CuoUcQ/exec";  // same URL used for orders
 
-// ===== LOAD CONTENT FROM GOOGLE SHEET =====
+// Load existing content into the form
 async function loadSettings() {
   try {
-    const res = await fetch(apiURL + "?action=get");
+    const res = await fetch(apiURL + "?resource=content");
     const data = await res.json();
 
     document.getElementById("welcomeTitle").value = data.welcomeTitle || "";
@@ -14,11 +13,11 @@ async function loadSettings() {
   } catch (err) {
     console.error("Error loading settings:", err);
     document.getElementById("settings-status").textContent =
-      "Error loading content!";
+      "Error loading content.";
   }
 }
 
-// ===== SAVE CONTENT TO GOOGLE SHEET =====
+// Save form values back to Google Sheet
 async function saveSettings(event) {
   event.preventDefault();
 
@@ -31,7 +30,7 @@ async function saveSettings(event) {
   document.getElementById("settings-status").textContent = "Saving...";
 
   try {
-    const res = await fetch(apiURL + "?action=save", {
+    const res = await fetch(apiURL + "?resource=content", {
       method: "POST",
       body: JSON.stringify(body)
     });
@@ -41,14 +40,16 @@ async function saveSettings(event) {
     if (json.status === "success") {
       document.getElementById("settings-status").textContent =
         "Updated successfully!";
+    } else {
+      document.getElementById("settings-status").textContent =
+        "Save failed.";
     }
 
   } catch (err) {
     console.error("Error saving:", err);
     document.getElementById("settings-status").textContent =
-      "Failed to save.";
+      "Error while saving.";
   }
 }
 
-// Run when page loads
 document.addEventListener("DOMContentLoaded", loadSettings);
