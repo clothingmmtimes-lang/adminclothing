@@ -1,1 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Orders - MM Times Clothing Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<div class="layout">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <span class="logo-circle">MM</span>
+      <span class="logo-text">Admin Panel</span>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="admin.html" class="nav-link">Dashboard</a>
+      <a href="orders.html" class="nav-link active">Orders</a>
+      <a href="settings.html" class="nav-link">Settings</a>
+    </nav>
+  </aside>
+
+  <!-- Main content -->
+  <main class="main">
+    <header class="topbar">
+      <h1>Orders</h1>
+      <div class="topbar-right">
+        <span class="pill">Orders from Website</span>
+      </div>
+    </header>
+
+    <section class="content">
+      <div class="card">
+        <h2>Orders List</h2>
+        <p class="muted">
+          Below will show all orders fetched from your Google Sheet.
+          For now, this is a structure – we’ll connect the API next.
+        </p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>Product</th>
+              <th>Price</th>
+              <th>Date</th>
+            </tr>
+            </thead>
+            <tbody id="orders-body">
+            <!-- Filled by orders.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script src="scripts/admin.js"></script>
+<script src="scripts/orders.js"></script>
+</body>
+</html>
 
